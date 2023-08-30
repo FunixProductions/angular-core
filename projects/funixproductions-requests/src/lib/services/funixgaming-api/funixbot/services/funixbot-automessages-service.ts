@@ -1,14 +1,15 @@
 import {CrudHttpClient} from "../../../core/components/requests/crud-http-client";
 import FunixbotAutomessageDto from "../dtos/funixbot-automessage-dto";
-import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
 export default class FunixbotAutomessagesService extends CrudHttpClient<FunixbotAutomessageDto> {
 
-    constructor() {
-      super(null, "https://funixprod-api.herokuapp.com", "/funixbot/automessages");
+    constructor(http: HttpClient, production: boolean) {
+      super(
+        http,
+        production ? 'https://api.funixgaming.fr' : 'https://dev.api.funixgaming.fr',
+        "/funixbot/automessages"
+      );
     }
 
 }

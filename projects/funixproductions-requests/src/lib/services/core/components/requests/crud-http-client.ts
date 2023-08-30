@@ -1,4 +1,3 @@
-import {Injectable} from "@angular/core";
 import ApiDTO from "../../dtos/api-dto";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -13,9 +12,6 @@ interface RequestParams {
   search?: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
 export abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixprodHttpClient {
 
   private readonly domain: string;

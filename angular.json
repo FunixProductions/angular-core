@@ -1,0 +1,43 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "funixproductions-requests": {
+      "projectType": "library",
+      "root": "projects/funixproductions-requests",
+      "sourceRoot": "projects/funixproductions-requests/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/funixproductions-requests/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/funixproductions-requests/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/funixproductions-requests/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/funixproductions-requests/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "6be86905-7e9f-4f15-944a-7f8ff2d35aab"
+  }
+}

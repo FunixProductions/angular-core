@@ -1,12 +1,16 @@
 import {CrudHttpClient} from "../../../../core/components/requests/crud-http-client";
 import PacifistaNewsDTO from "../dtos/PacifistaNewsDTO";
 import {environment} from "../../../../../../environments/environment";
-import {Injectable} from "@angular/core";
+import {environmentDev} from "../../../../../../environments/environment-dev";
+import {HttpClient} from "@angular/common/http";
 
-@Injectable({
-  providedIn: 'root'
-})
 export default class PacifistaNewsService extends CrudHttpClient<PacifistaNewsDTO> {
-  override domain: string = environment.pacifistaApiUrl;
-  override path: string = 'web/news';
+
+  constructor(protected httpClient: HttpClient, production: boolean) {
+    super(
+      httpClient,
+      production ? environment.pacifistaApiUrl : environmentDev.pacifistaApiUrl,
+      'web/news'
+    );
+  }
 }

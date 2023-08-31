@@ -1,19 +1,17 @@
-import {Injectable} from "@angular/core";
-import {environment} from "../../../../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {FunixprodHttpClient} from "../../../../core/components/requests/funixprod-http-client";
+import {FunixprodHttpClient} from "../../../core/components/requests/funixprod-http-client";
 import {Observable} from "rxjs";
 import {TwitchEventSubListDTO} from "../dtos/TwitchEventSubListDTO";
+import {environmentDev} from "../../../../../environments/environment-dev";
 
-@Injectable({
-  providedIn: 'root'
-})
 export class TwitchEventsubService extends FunixprodHttpClient {
 
-  url: string = environment.funixproductionsApiUrl + 'twitch/eventsub'
+  url: string;
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected httpClient: HttpClient, production: boolean) {
     super();
+    this.url = (production ? environment.funixproductionsApiUrl : environmentDev.funixproductionsApiUrl) + 'twitch/eventsub';
   }
 
   getAppSubscriptions(): Observable<TwitchEventSubListDTO> {

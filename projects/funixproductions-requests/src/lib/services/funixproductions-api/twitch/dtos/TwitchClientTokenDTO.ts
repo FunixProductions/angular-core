@@ -1,4 +1,4 @@
-import ApiDTO from "../../../../core/dtos/api-dto";
+import ApiDTO from "../../../core/dtos/api-dto";
 
 export default class TwitchClientTokenDTO extends ApiDTO {
   userUuid?: string;

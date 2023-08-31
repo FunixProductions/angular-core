@@ -1,6 +1,5 @@
 import {FunixprodHttpClient} from "../requests/funixprod-http-client";
 import {Observable} from "rxjs";
-import {environment} from "../../../../../environments/environment";
 
 export abstract class ApiWebsocket extends FunixprodHttpClient {
 
@@ -8,8 +7,14 @@ export abstract class ApiWebsocket extends FunixprodHttpClient {
   public static readonly PASS_AUTH_TOKEN: string = 'pass-bearer-token';
 
   protected socket?: WebSocket;
-  protected domain: string = environment.funixproductionsWebsocketUrl;
-  protected path: string = '';
+  protected readonly domain: string;
+  protected readonly path: string;
+
+  protected constructor(domain: string, path: string) {
+    super();
+    this.domain = domain;
+    this.path = path;
+  }
 
   public connect(): Observable<string> {
     const bearerToken: string | null = this.getBearer();

@@ -2,7 +2,6 @@ import ApiDTO from "../../dtos/api-dto";
 import {CrudHttpClient} from "../requests/crud-http-client";
 import {PageOption, Paginated} from "../../dtos/paginated";
 import {QueryBuilder, QueryParam} from "../query.builder";
-import {PageEvent} from "@angular/material/paginator";
 
 export abstract class ListComponent<DTO extends ApiDTO, SERVICE extends CrudHttpClient<DTO>> {
 
@@ -35,8 +34,8 @@ export abstract class ListComponent<DTO extends ApiDTO, SERVICE extends CrudHttp
     this.updateList();
   }
 
-  onPaginateChange(event: PageEvent): void {
-    this.page = event.pageIndex;
+  onPaginateChange(pageIndex: number): void {
+    this.page = pageIndex;
     this.pageOption.page = this.page;
 
     this.updateList();

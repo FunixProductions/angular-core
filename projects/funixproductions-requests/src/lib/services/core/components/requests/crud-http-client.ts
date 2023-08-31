@@ -14,8 +14,8 @@ interface RequestParams {
 
 export abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixprodHttpClient {
 
-  private readonly domain: string;
-  private readonly path: string;
+  protected readonly domain: string;
+  protected readonly path: string;
 
   protected constructor(protected http: HttpClient, domain: string, path: string) {
     super();

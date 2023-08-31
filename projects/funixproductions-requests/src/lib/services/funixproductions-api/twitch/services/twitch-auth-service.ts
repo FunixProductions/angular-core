@@ -1,20 +1,18 @@
-import {Injectable} from "@angular/core";
-import {environment} from "../../../../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {FunixprodHttpClient} from "../../../../core/components/requests/funixprod-http-client";
+import {FunixprodHttpClient} from "../../../core/components/requests/funixprod-http-client";
 import {Observable} from "rxjs";
 import {TwitchTokenType} from "../enums/TwitchTokenType";
 import TwitchClientTokenDTO from "../dtos/TwitchClientTokenDTO";
+import {environmentDev} from "../../../../../environments/environment-dev";
 
-@Injectable({
-  providedIn: 'root'
-})
 export class TwitchAuthService extends FunixprodHttpClient {
 
-  url: string = environment.funixproductionsApiUrl + 'twitch/auth'
+  url: string;
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected httpClient: HttpClient, production: boolean) {
     super();
+    this.url = (production ? environment.funixproductionsApiUrl : environmentDev.funixproductionsApiUrl) + 'twitch/auth';
   }
 
   getAuthClientUrl(tokenType: TwitchTokenType = TwitchTokenType.VIEWER): Observable<string> {

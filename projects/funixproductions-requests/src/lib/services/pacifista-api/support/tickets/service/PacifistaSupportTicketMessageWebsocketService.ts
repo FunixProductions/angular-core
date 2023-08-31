@@ -1,13 +1,14 @@
 import {ApiWebsocket} from "../../../../core/components/websocket/ApiWebsocket";
 import {environment} from "../../../../../../environments/environment";
-import {Injectable} from "@angular/core";
+import {environmentDev} from "../../../../../../environments/environment-dev";
 
-@Injectable({
-  providedIn: 'root'
-})
 export default class PacifistaSupportTicketMessageWebsocketService extends ApiWebsocket {
 
-  protected override domain: string = environment.pacifistaWebsocketUrl;
-  protected override path: string = 'support/ticket/message/web/ws'
+  constructor(production: boolean) {
+    super(
+      production ? environment.pacifistaWebsocketUrl : environmentDev.pacifistaWebsocketUrl,
+      'support/ticket/message/web/ws'
+    );
+  }
 
 }

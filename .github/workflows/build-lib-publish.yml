@@ -21,7 +21,11 @@ jobs:
       - name: Install depedencies
         run: npm ci
 
-      - run: npm publish --access public
+      - name: Build libraries
+        run: npm run build
+
+      - name: Publish to npm funixproductions-requests
+        run: cd dist/funixproductions-requests && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 

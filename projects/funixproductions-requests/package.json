@@ -1,5 +1,5 @@
 {
-  "name": "funixproductions-requests",
+  "name": "@funixproductions/funixproductions-requests",
   "version": "0.0.1",
   "description": "Package used in all FunixProductions Angular projects",
   "peerDependencies": {

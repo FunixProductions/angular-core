@@ -1,0 +1,13 @@
+{
+  "name": "funixproductions-requests",
+  "version": "0.0.1",
+  "description": "Package used in all FunixProductions Angular projects",
+  "peerDependencies": {
+    "@angular/common": "^16.1.0",
+    "@angular/core": "^16.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

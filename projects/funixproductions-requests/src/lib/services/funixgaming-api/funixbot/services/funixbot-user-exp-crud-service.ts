@@ -1,6 +1,6 @@
 import {FunixbotUserExpDto} from "../dtos/funixbot-user-exp-dto";
 import {HttpClient} from "@angular/common/http";
-import FunixgamingService from "../../funixgaming-service";
+import {FunixgamingService} from "../../funixgaming-service";
 
 export class FunixbotUserExpCrudService extends FunixgamingService<FunixbotUserExpDto> {
 

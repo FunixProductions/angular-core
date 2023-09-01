@@ -1,5 +1,5 @@
-import ApiDTO from "../../../../../core/dtos/api-dto";
+import {ApiDTO} from "../../../../../core/dtos/api-dto";
 
-export default class PacifistaShopCategoryDTO extends ApiDTO {
+export class PacifistaShopCategoryDTO extends ApiDTO {
   name?: string;
 }

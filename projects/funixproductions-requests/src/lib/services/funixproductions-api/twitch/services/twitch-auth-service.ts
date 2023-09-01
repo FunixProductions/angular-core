@@ -3,8 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {FunixprodHttpClient} from "../../../core/components/requests/funixprod-http-client";
 import {Observable} from "rxjs";
 import {TwitchTokenType} from "../enums/TwitchTokenType";
-import TwitchClientTokenDTO from "../dtos/TwitchClientTokenDTO";
 import {environmentDev} from "../../../../../environments/environment-dev";
+import {TwitchClientTokenDTO} from "../dtos/TwitchClientTokenDTO";
 
 export class TwitchAuthService extends FunixprodHttpClient {
 

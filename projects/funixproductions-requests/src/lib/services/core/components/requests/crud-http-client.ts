@@ -1,9 +1,9 @@
-import ApiDTO from "../../dtos/api-dto";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PageOption, Paginated} from "../../dtos/paginated";
 import {QueryBuilder} from "../query.builder";
 import {FunixprodHttpClient} from "./funixprod-http-client";
+import {ApiDTO} from "../../dtos/api-dto";
 
 interface RequestParams {
   elemsPerPage?: number;

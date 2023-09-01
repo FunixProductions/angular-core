@@ -2,11 +2,11 @@ import {CrudHttpClient} from "../../../../core/components/requests/crud-http-cli
 import {environment} from "../../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import PacifistaSupportTicketMessageDTO from "../dtos/PacifistaSupportTicketMessageDTO";
 import {Paginated} from "../../../../core/dtos/paginated";
 import {environmentDev} from "../../../../../../environments/environment-dev";
+import {PacifistaSupportTicketMessageDTO} from "../dtos/PacifistaSupportTicketMessageDTO";
 
-export default class PacifistaSupportTicketMessageService extends CrudHttpClient<PacifistaSupportTicketMessageDTO> {
+export class PacifistaSupportTicketMessageService extends CrudHttpClient<PacifistaSupportTicketMessageDTO> {
 
   constructor(protected httpClient: HttpClient, production: boolean) {
     super(

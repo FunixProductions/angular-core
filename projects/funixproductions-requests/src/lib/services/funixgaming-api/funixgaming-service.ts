@@ -1,10 +1,10 @@
-import ApiDTO from "../core/dtos/api-dto";
 import {CrudHttpClient} from "../core/components/requests/crud-http-client";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {environmentDev} from "../../../environments/environment-dev";
+import {ApiDTO} from "../core/dtos/api-dto";
 
-export default abstract class FunixgamingService<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
+export abstract class FunixgamingService<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
 
   protected constructor(http: HttpClient, production: boolean, path: string) {
     super(

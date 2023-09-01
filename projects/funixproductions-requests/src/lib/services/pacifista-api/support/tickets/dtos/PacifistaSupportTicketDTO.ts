@@ -1,4 +1,4 @@
-import ApiDTO from "../../../../core/dtos/api-dto";
+import {ApiDTO} from "../../../../core/dtos/api-dto";
 
 export enum TicketType {
   ONLINE_PURCHASE = "ONLINE_PURCHASE",
@@ -20,7 +20,7 @@ export enum TicketCreationSource {
   WEB = "WEB"
 }
 
-export default class PacifistaSupportTicketDTO extends ApiDTO {
+export class PacifistaSupportTicketDTO extends ApiDTO {
   object?: string;
   createdByName?: string;
   createdById?: string;

@@ -1,7 +1,7 @@
-import PacifistaSupportTicketDTO from "./PacifistaSupportTicketDTO";
-import ApiDTO from "../../../../core/dtos/api-dto";
+import {ApiDTO} from "../../../../core/dtos/api-dto";
+import {PacifistaSupportTicketDTO} from "./PacifistaSupportTicketDTO";
 
-export default class PacifistaSupportTicketMessageDTO extends ApiDTO {
+export class PacifistaSupportTicketMessageDTO extends ApiDTO {
   ticket?: PacifistaSupportTicketDTO;
   writtenByName?: string;
   writtenById?: string;

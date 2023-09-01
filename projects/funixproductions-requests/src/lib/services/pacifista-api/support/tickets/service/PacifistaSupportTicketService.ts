@@ -1,12 +1,12 @@
 import {CrudHttpClient} from "../../../../core/components/requests/crud-http-client";
-import PacifistaSupportTicketDTO, {TicketStatus} from "../dtos/PacifistaSupportTicketDTO";
 import {environment} from "../../../../../../environments/environment";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {Paginated} from "../../../../core/dtos/paginated";
 import {environmentDev} from "../../../../../../environments/environment-dev";
+import {PacifistaSupportTicketDTO, TicketStatus} from "../dtos/PacifistaSupportTicketDTO";
 
-export default class PacifistaSupportTicketService extends CrudHttpClient<PacifistaSupportTicketDTO> {
+export class PacifistaSupportTicketService extends CrudHttpClient<PacifistaSupportTicketDTO> {
 
   constructor(protected httpClient: HttpClient, production: boolean) {
     super(

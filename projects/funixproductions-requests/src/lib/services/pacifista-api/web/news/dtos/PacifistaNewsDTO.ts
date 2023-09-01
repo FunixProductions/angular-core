@@ -1,6 +1,6 @@
-import ApiDTO from "../../../../core/dtos/api-dto";
+import {ApiDTO} from "../../../../core/dtos/api-dto";
 
-export default class PacifistaNewsDTO extends ApiDTO {
+export class PacifistaNewsDTO extends ApiDTO {
   originalWriter?: string;
 
   updateWriter?: string;

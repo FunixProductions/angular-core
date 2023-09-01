@@ -1,7 +1,7 @@
-import ApiDTO from "../../dtos/api-dto";
 import {CrudHttpClient} from "../requests/crud-http-client";
 import {PageOption, Paginated} from "../../dtos/paginated";
 import {QueryBuilder, QueryParam} from "../query.builder";
+import {ApiDTO} from "../../dtos/api-dto";
 
 export abstract class ListComponent<DTO extends ApiDTO, SERVICE extends CrudHttpClient<DTO>> {
 

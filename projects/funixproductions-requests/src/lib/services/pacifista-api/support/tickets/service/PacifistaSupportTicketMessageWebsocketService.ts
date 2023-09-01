@@ -2,7 +2,7 @@ import {ApiWebsocket} from "../../../../core/components/websocket/ApiWebsocket";
 import {environment} from "../../../../../../environments/environment";
 import {environmentDev} from "../../../../../../environments/environment-dev";
 
-export default class PacifistaSupportTicketMessageWebsocketService extends ApiWebsocket {
+export class PacifistaSupportTicketMessageWebsocketService extends ApiWebsocket {
 
   constructor(production: boolean) {
     super(

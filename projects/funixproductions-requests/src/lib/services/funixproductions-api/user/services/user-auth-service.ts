@@ -6,10 +6,10 @@ import {environment} from "../../../../../environments/environment";
 import {UserLoginDTO} from "../dtos/requests/user-login-dto";
 import {UserTokenDTO} from "../dtos/user-token-dto";
 import {FunixprodHttpClient} from "../../../core/components/requests/funixprod-http-client";
-import UserPasswordResetRequestDTO from "../dtos/requests/user-password-reset-request-dto";
-import UserPasswordResetDTO from "../dtos/requests/user-password-reset-dto";
 import {Paginated} from "../../../core/dtos/paginated";
 import {environmentDev} from "../../../../../environments/environment-dev";
+import {UserPasswordResetRequestDTO} from "../dtos/requests/user-password-reset-request-dto";
+import {UserPasswordResetDTO} from "../dtos/requests/user-password-reset-dto";
 
 export class UserAuthService extends FunixprodHttpClient {
 

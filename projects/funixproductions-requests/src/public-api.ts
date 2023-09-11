@@ -21,8 +21,8 @@ export * from './lib/services/funixgaming-api/funixbot/dtos/funixbot-command-dto
 export * from './lib/services/funixgaming-api/funixbot/dtos/funixbot-user-exp-dto';
 export * from './lib/services/funixgaming-api/funixbot/enums/funixbot-command-type';
 export * from './lib/services/funixgaming-api/funixbot/services/funixbot-automessages-service';
-export * from './lib/services/funixgaming-api/funixbot/services/funixbot-commands-crud-service';
-export * from './lib/services/funixgaming-api/funixbot/services/funixbot-user-exp-crud-service';
+export * from './lib/services/funixgaming-api/funixbot/services/funixbot-commands-service';
+export * from './lib/services/funixgaming-api/funixbot/services/funixbot-user-exp-service';
 
 /**
  * FunixProductions API

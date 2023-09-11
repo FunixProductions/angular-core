@@ -1,6 +1,6 @@
 {
   "name": "@funixproductions/angular-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Package used in all FunixProductions Angular projects",
   "scripts": {
     "ng": "ng",

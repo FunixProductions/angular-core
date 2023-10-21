@@ -1,10 +1,9 @@
-name: Build
+name: Test and Analyze with SonarQube
 
 on:
   push:
     branches:
       - master
-
 
 jobs:
   build:

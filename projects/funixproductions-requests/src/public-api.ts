@@ -63,3 +63,6 @@ export * from './lib/services/pacifista-api/web/shop/categories/dtos/PacifistaSh
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerDataDTO';
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerChatMessageDTO';
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerSessionDTO';
+export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerDataService';
+export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerSessionsService';
+export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerChatMessagesService';

@@ -1,6 +1,6 @@
 {
   "name": "@funixproductions/angular-core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Package used in all FunixProductions Angular projects",
   "scripts": {
     "ng": "ng",
@@ -24,8 +24,8 @@
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.0.9",
-    "@angular/cli": "~17.0.9",
+    "@angular-devkit/build-angular": "^17.0.10",
+    "@angular/cli": "~17.1.0",
     "@angular/compiler-cli": "^17.1.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",

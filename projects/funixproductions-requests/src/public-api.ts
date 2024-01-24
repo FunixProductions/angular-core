@@ -6,6 +6,7 @@
  * Core packages
  */
 export * from './lib/services/core/dtos/api-dto';
+export * from './lib/services/core/dtos/error-dto';
 export * from './lib/services/core/dtos/paginated';
 export * from './lib/services/core/components/requests/crud-http-client';
 export * from './lib/services/core/components/requests/funixprod-http-client';

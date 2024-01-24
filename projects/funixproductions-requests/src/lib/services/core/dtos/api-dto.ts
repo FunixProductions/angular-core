@@ -3,6 +3,9 @@
  */
 export abstract class ApiDTO {
   public id?: string;
+
   public createdAt?: Date;
+
   public updatedAt?: Date;
+
 }

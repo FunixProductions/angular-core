@@ -1,5 +1,5 @@
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {PageOption, Paginated} from "../../dtos/paginated";
 import {QueryBuilder} from "../query.builder";
 import {FunixprodHttpClient} from "./funixprod-http-client";
@@ -36,23 +36,48 @@ export abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixprodHttpCl
       search: (queryBuilder === null ? '' : queryBuilder.get())
     };
 
-    return this.http.get<Paginated<DTO>>(this.domain + this.path, {headers: super.getHeaders(), params: {...params}});
+    return this.http.get<Paginated<DTO>>(this.domain + this.path, {headers: super.getHeaders(), params: {...params}})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   getById(id: string): Observable<DTO> {
-    return this.http.get<DTO>(this.domain + this.path + "/" + id, {headers: super.getHeaders()});
+    return this.http.get<DTO>(this.domain + this.path + "/" + id, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   create(dto: DTO): Observable<DTO> {
     return this.http.post<DTO>(this.domain + this.path, dto, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   patch(dto: DTO): Observable<DTO> {
     return this.http.patch<DTO>(this.domain + this.path, dto, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   update(dto: DTO): Observable<DTO> {
     return this.http.put<DTO>(this.domain + this.path, dto, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   delete(id: string): Observable<any> {
@@ -61,6 +86,10 @@ export abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixprodHttpCl
     return this.http.delete(this.domain + this.path, {
       params: httpParams,
       headers: super.getHeaders()
-    })
+    }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => this.buildErrorDto(error));
+      })
+    )
   }
 }

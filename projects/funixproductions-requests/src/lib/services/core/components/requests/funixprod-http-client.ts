@@ -1,4 +1,5 @@
-import {HttpHeaders} from "@angular/common/http";
+import {HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {ErrorDto} from "../../dtos/error-dto";
 
 export abstract class FunixprodHttpClient {
 
@@ -26,6 +27,34 @@ export abstract class FunixprodHttpClient {
     }
 
     return headersToSend;
+  }
+
+  public buildErrorDto(error: HttpErrorResponse): ErrorDto {
+    let customError: ErrorDto = new ErrorDto(
+      'Une erreur est survenue : ',
+      error.status,
+      Date.now(),
+      []
+    );
+
+    if (error.error instanceof ErrorEvent) {
+      customError.error += error.error.message;
+    } else {
+      if (error.error.error) {
+        customError.error += error.error.error;
+      }
+      if (error.error.timestamp) {
+        customError.timestamp = error.error.timestamp;
+      }
+      if (error.error.fieldErrors) {
+        customError.fieldErrors = error.error.fieldErrors.map((fieldError: any) => ({
+          field: fieldError.field,
+          message: fieldError.message
+        }));
+      }
+    }
+
+    return customError;
   }
 
 }

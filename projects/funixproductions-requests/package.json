@@ -4,11 +4,11 @@
   "description": "Package used in all FunixProductions Angular projects",
   "peerDependencies": {
     "@angular/common": "^17.1.0",
-    "@angular/core": "^17.1.0"
+    "@angular/core": "^17.1.0",
+    "rxjs": "~7.8.0",
+    "jwt-decode": "^4.0.0"
   },
   "dependencies": {
-    "rxjs": "~7.8.0",
-    "jwt-decode": "^4.0.0",
     "tslib": "^2.3.0"
   },
   "sideEffects": false

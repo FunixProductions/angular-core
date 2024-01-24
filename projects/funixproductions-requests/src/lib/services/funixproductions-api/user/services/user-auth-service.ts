@@ -1,5 +1,5 @@
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {UserCreationDTO} from "../dtos/requests/user-creation-dto";
 import {UserDTO} from "../dtos/user-dto";
 import {environment} from "../../../../../environments/environment";
@@ -21,24 +21,49 @@ export class UserAuthService extends FunixprodHttpClient {
   }
 
   register(request: UserCreationDTO, captchaCode: string): Observable<UserDTO> {
-    return this.httpClient.post<UserDTO>(this.url + 'register', request, {headers: super.getHeaders(captchaCode)});
+    return this.httpClient.post<UserDTO>(this.url + 'register', request, {headers: super.getHeaders(captchaCode)})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+           return throwError(() => this.buildErrorDto(error));
+         })
+      );
   }
 
   login(request: UserLoginDTO, captchaCode: string): Observable<UserTokenDTO> {
-    return this.httpClient.post<UserTokenDTO>(this.url + 'login', request, {headers: super.getHeaders(captchaCode)});
+    return this.httpClient.post<UserTokenDTO>(this.url + 'login', request, {headers: super.getHeaders(captchaCode)})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   logout(): Observable<void> {
-    return this.httpClient.post<void>(this.url + 'logout', null, {headers: super.getHeaders()});
+    return this.httpClient.post<void>(this.url + 'logout', null, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   currentUser(): Observable<UserDTO> {
-    return this.httpClient.get<UserDTO>(this.url + 'current', {headers: super.getHeaders()});
+    return this.httpClient.get<UserDTO>(this.url + 'current', {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   getSessions(page: string = '0', elemsPerPage: string = '30'): Observable<Paginated<UserTokenDTO>> {
     const params: HttpParams = new HttpParams().set('page', page).set('elementsPerPage', elemsPerPage);
-    return this.httpClient.get<Paginated<UserTokenDTO>>(this.url + 'sessions', {headers: super.getHeaders(), params: params});
+    return this.httpClient.get<Paginated<UserTokenDTO>>(this.url + 'sessions', {headers: super.getHeaders(), params: params})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   deleteSessions(ids: string | string[]): Observable<void> {
@@ -49,22 +74,42 @@ export class UserAuthService extends FunixprodHttpClient {
       params = new HttpParams().set('id', ids as string);
     }
 
-    return this.httpClient.delete<void>(this.url + 'sessions', {headers: super.getHeaders(), params: params});
+    return this.httpClient.delete<void>(this.url + 'sessions', {headers: super.getHeaders(), params: params})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   resetPasswordRequest(email: string, captchaCode: string): Observable<void> {
     const request = new UserPasswordResetRequestDTO();
     request.email = email;
 
-    return this.httpClient.post<void>(this.url + 'resetPasswordRequest', request, {headers: super.getHeaders(captchaCode)});
+    return this.httpClient.post<void>(this.url + 'resetPasswordRequest', request, {headers: super.getHeaders(captchaCode)})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   resetPassword(request: UserPasswordResetDTO, captchaCode: string): Observable<void> {
-    return this.httpClient.post<void>(this.url + 'resetPassword', request, {headers: super.getHeaders(captchaCode)});
+    return this.httpClient.post<void>(this.url + 'resetPassword', request, {headers: super.getHeaders(captchaCode)})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
   requestValidationCode(): Observable<void> {
-    return this.httpClient.post<void>(this.url + 'valid-account', null, {headers: super.getHeaders()});
+    return this.httpClient.post<void>(this.url + 'valid-account', null, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
   }
 
 }

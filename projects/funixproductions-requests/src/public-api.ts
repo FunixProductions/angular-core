@@ -28,6 +28,8 @@ export * from './lib/services/funixgaming-api/funixbot/services/funixbot-user-ex
 /**
  * FunixProductions API
  */
+export * from './lib/services/funixproductions-api/user/services/user-jwt-checker-service';
+export * from './lib/services/funixproductions-api/user/dtos/user-session-jwt';
 export * from './lib/services/funixproductions-api/user/services/user-auth-service';
 export * from './lib/services/funixproductions-api/user/services/user-crud-service';
 export * from './lib/services/funixproductions-api/user/dtos/requests/user-creation-dto';

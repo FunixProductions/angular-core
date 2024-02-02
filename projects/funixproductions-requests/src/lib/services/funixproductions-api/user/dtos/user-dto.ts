@@ -13,4 +13,12 @@ export class UserDTO extends ApiDTO {
   email: string = '';
   role?: UserRole
   valid: boolean = true;
+  country: UserCountry = new UserCountry();
+}
+
+export class UserCountry {
+  name: string = 'France';
+  code: number = 250;
+  countryCode2Chars: string = 'FR';
+  countryCode3Chars: string = 'FRA';
 }

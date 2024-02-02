@@ -8,6 +8,10 @@ jobs:
   publish-npm-global-registry:
     runs-on: ubuntu-latest
 
+    environment:
+      name: npm-publish
+      url: https://www.npmjs.com/package/@funixproductions/funixproductions-requests
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3

@@ -62,6 +62,9 @@ export * from './lib/services/pacifista-api/web/shop/articles/dtos/PacifistaShop
 export * from './lib/services/pacifista-api/web/shop/articles/services/PacifistaShopArticleService';
 export * from './lib/services/pacifista-api/web/shop/categories/services/PacifistaShopCategoryService';
 export * from './lib/services/pacifista-api/web/shop/categories/dtos/PacifistaShopCategoryDTO';
+export * from './lib/services/pacifista-api/web/shop/payment/dtos/responses/PacifistaPaymentResponseDTO';
+export * from './lib/services/pacifista-api/web/shop/payment/dtos/requests/PacifistaPaymentRequestDTO';
+export * from './lib/services/pacifista-api/web/shop/payment/services/PacifistaPaymentService';
 
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerDataDTO';
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerChatMessageDTO';

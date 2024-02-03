@@ -82,10 +82,7 @@ export class UserAuthService extends FunixprodHttpClient {
       );
   }
 
-  resetPasswordRequest(email: string, captchaCode: string): Observable<void> {
-    const request = new UserPasswordResetRequestDTO();
-    request.email = email;
-
+  resetPasswordRequest(request: UserPasswordResetRequestDTO, captchaCode: string): Observable<void> {
     return this.httpClient.post<void>(this.url + 'resetPasswordRequest', request, {headers: super.getHeaders(captchaCode)})
       .pipe(
         catchError((error: HttpErrorResponse) => {

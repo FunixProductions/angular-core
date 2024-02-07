@@ -17,8 +17,11 @@ export abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixprodHttpCl
   protected readonly domain: string;
   protected readonly path: string;
 
-  protected constructor(protected http: HttpClient, domain: string, path: string) {
+  protected http: HttpClient;
+
+  protected constructor(http: HttpClient, domain: string, path: string) {
     super();
+    this.http = http;
     this.domain = domain;
     this.path = path;
   }

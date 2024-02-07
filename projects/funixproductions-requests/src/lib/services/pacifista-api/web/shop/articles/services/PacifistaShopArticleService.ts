@@ -1,10 +1,10 @@
-import {CrudHttpClient} from "../../../../../core/components/requests/crud-http-client";
 import {environment} from "../../../../../../../environments/environment";
 import {environmentDev} from "../../../../../../../environments/environment-dev";
 import {HttpClient} from "@angular/common/http";
 import {PacifistaShopArticleDTO} from "../dtos/PacifistaShopArticleDTO";
+import {StorageHttpClient} from "../../../../../core/components/requests/storage-http-client";
 
-export class PacifistaShopArticleService extends CrudHttpClient<PacifistaShopArticleDTO> {
+export class PacifistaShopArticleService extends StorageHttpClient<PacifistaShopArticleDTO> {
 
   constructor(protected httpClient: HttpClient, production: boolean) {
     super(

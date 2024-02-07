@@ -9,6 +9,7 @@ export * from './lib/services/core/dtos/api-dto';
 export * from './lib/services/core/dtos/error-dto';
 export * from './lib/services/core/dtos/paginated';
 export * from './lib/services/core/components/requests/crud-http-client';
+export * from './lib/services/core/components/requests/storage-http-client';
 export * from './lib/services/core/components/requests/funixprod-http-client';
 export * from './lib/services/core/components/lists/ListComponent';
 export * from './lib/services/core/components/websocket/ApiWebsocket';

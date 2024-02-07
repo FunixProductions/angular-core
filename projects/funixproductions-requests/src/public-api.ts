@@ -29,6 +29,10 @@ export * from './lib/services/funixgaming-api/funixbot/services/funixbot-user-ex
 /**
  * FunixProductions API
  */
+export * from './lib/services/funixproductions-api/accounting/services/income-accounting-service';
+export * from './lib/services/funixproductions-api/accounting/services/product-accounting-service';
+export * from './lib/services/funixproductions-api/accounting/dtos/income-dto';
+export * from './lib/services/funixproductions-api/accounting/dtos/product-dto';
 export * from './lib/services/funixproductions-api/user/services/user-jwt-checker-service';
 export * from './lib/services/funixproductions-api/user/dtos/user-session-jwt';
 export * from './lib/services/funixproductions-api/user/services/user-auth-service';

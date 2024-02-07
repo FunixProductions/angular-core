@@ -32,7 +32,6 @@ export class UserJwtCheckerService {
       const jwt = this.parseJwt(token);
 
       if (jwt == null || jwt.expirationAt < Date.now() / 1000) {
-        localStorage.removeItem(FunixprodHttpClient.accessTokenLocalStorageName);
         return null;
       } else {
         return jwt;

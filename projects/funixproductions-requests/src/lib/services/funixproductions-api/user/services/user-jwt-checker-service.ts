@@ -30,8 +30,11 @@ export class UserJwtCheckerService {
 
     if (token) {
       const jwt = this.parseJwt(token);
+      if (jwt === null) {
+        return null;
+      }
 
-      if (jwt == null || jwt.expirationAt < Date.now() / 1000) {
+      if (jwt.expirationAt && jwt.expirationAt < Date.now() / 1000) {
         return null;
       } else {
         return jwt;
@@ -45,14 +48,14 @@ export class UserJwtCheckerService {
     try {
       const decoded: FunixProdJwtToken = jwtDecode(token);
 
-      if (decoded.user && decoded.iat && decoded.exp) {
+      if (decoded.user && decoded.iat) {
         const user: UserDTO = decoded.user;
 
         return new UserSessionJwt(
-          decoded.iat,
-          decoded.exp,
-          user.role ?? UserRole.USER,
-          user
+            decoded.iat,
+            user.role ?? UserRole.USER,
+            user,
+            decoded.exp
         );
       } else {
         return null;

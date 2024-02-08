@@ -9,8 +9,8 @@ export abstract class FunixprodHttpClient {
 
   public static readonly accessTokenLocalStorageName: string = 'user-token-requests'
   private static readonly captchaHeaderCode: string = 'X-Captcha-Google-Code';
-  private static readonly headerAuth: string = 'Authorization';
-  private static readonly bearerPrefix: string = 'Bearer';
+  public static readonly headerAuth: string = 'Authorization';
+  public static readonly bearerPrefix: string = 'Bearer';
 
   protected getHeaders(captchaCode: string = ''): HttpHeaders {
     let headersToSend = new HttpHeaders({

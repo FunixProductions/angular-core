@@ -1,7 +1,8 @@
 import {ApiDTO} from "../../dtos/api-dto";
 import {CrudHttpClient} from "./crud-http-client";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
+import {FunixprodHttpClient} from "./funixprod-http-client";
 
 export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
 
@@ -11,10 +12,16 @@ export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
 
     sendFile(request: DTO, file: File): Observable<DTO> {
         const formData = new FormData();
+        formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
         formData.append('file', file);
-        formData.append('dto', JSON.stringify(request));
 
-        return this.http.post<DTO>(this.domain + this.path + '/file', formData, {headers: this.getHeaders()})
+        let headers = new HttpHeaders();
+        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+        if (bearerToken !== null) {
+            headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        }
+
+        return this.http.post<DTO>(this.domain + this.path + '/file', formData, {headers: headers})
             .pipe(
                 catchError((error: HttpErrorResponse) => {
                     return throwError(() => this.buildErrorDto(error));

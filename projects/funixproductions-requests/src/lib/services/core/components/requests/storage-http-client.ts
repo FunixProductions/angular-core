@@ -29,4 +29,30 @@ export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
             );
     }
 
+    partialUpdateFile(request: DTO, file: File): Observable<DTO> {
+        const formData = new FormData();
+        formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
+        formData.append('file', file);
+
+        return this.http.post<DTO>(this.domain + this.path + '/file-patch', formData, {headers: this.getHeaders()})
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    return throwError(() => this.buildErrorDto(error));
+                })
+            );
+    }
+
+    fullUpdateFile(request: DTO, file: File): Observable<DTO> {
+        const formData = new FormData();
+        formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
+        formData.append('file', file);
+
+        return this.http.post<DTO>(this.domain + this.path + '/file-put', formData, {headers: this.getHeaders()})
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    return throwError(() => this.buildErrorDto(error));
+                })
+            );
+    }
+
 }

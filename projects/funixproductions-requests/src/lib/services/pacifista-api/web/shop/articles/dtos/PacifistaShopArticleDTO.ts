@@ -7,5 +7,7 @@ export class PacifistaShopArticleDTO extends ApiDTO {
     description?: string;
     htmlDescription?: string;
     price?: number;
+    tax?: number;
+    priceWithTax?: number;
     commandExecuted?: string;
 }

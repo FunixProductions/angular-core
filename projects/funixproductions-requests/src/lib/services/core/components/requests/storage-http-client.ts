@@ -15,13 +15,7 @@ export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
         formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
         formData.append('file', file);
 
-        let headers = new HttpHeaders();
-        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
-        if (bearerToken !== null) {
-            headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
-        }
-
-        return this.http.post<DTO>(this.domain + this.path + '/file', formData, {headers: headers})
+        return this.http.post<DTO>(this.domain + this.path + '/file', formData, {headers: this.getHeadersAuth()})
             .pipe(
                 catchError((error: HttpErrorResponse) => {
                     return throwError(() => this.buildErrorDto(error));
@@ -34,7 +28,7 @@ export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
         formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
         formData.append('file', file);
 
-        return this.http.post<DTO>(this.domain + this.path + '/file-patch', formData, {headers: this.getHeaders()})
+        return this.http.post<DTO>(this.domain + this.path + '/file-patch', formData, {headers: this.getHeadersAuth()})
             .pipe(
                 catchError((error: HttpErrorResponse) => {
                     return throwError(() => this.buildErrorDto(error));
@@ -47,12 +41,22 @@ export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
         formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
         formData.append('file', file);
 
-        return this.http.post<DTO>(this.domain + this.path + '/file-put', formData, {headers: this.getHeaders()})
+        return this.http.post<DTO>(this.domain + this.path + '/file-put', formData, {headers: this.getHeadersAuth()})
             .pipe(
                 catchError((error: HttpErrorResponse) => {
                     return throwError(() => this.buildErrorDto(error));
                 })
             );
+    }
+
+    private getHeadersAuth(): HttpHeaders {
+        let headers = new HttpHeaders();
+        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+        if (bearerToken !== null) {
+            headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        }
+
+        return headers;
     }
 
 }

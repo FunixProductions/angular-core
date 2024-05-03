@@ -77,3 +77,6 @@ export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPl
 export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerDataService';
 export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerSessionsService';
 export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerChatMessagesService';
+
+export * from './lib/services/pacifista-api/web/user/dtos/PacifistaWebUserLinkDTO';
+export * from './lib/services/pacifista-api/web/user/services/PacifistaWebUserLinkService';

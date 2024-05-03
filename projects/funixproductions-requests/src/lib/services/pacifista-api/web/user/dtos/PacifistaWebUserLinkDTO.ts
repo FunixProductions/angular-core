@@ -1,6 +1,6 @@
 import {ApiDTO} from "../../../../core/dtos/api-dto";
 
-class PacifistaWebUserLinkDTO extends ApiDTO {
+export class PacifistaWebUserLinkDTO extends ApiDTO {
 
     funixProdUserId?: string;
     minecraftUuid?: string;

@@ -6,7 +6,7 @@ import {environmentDev} from "../../../../../environments/environment-dev";
 
 export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto> {
 
-    constructor(protected httpClient: HttpClient, production: boolean) {
+    constructor(httpClient: HttpClient, production: boolean) {
         super(
             httpClient,
             production ? environment.funixproductionsApiUrl : environmentDev.funixproductionsApiUrl,

@@ -33,6 +33,8 @@ export * from './lib/services/funixproductions-api/accounting/services/income-ac
 export * from './lib/services/funixproductions-api/accounting/services/product-accounting-service';
 export * from './lib/services/funixproductions-api/accounting/dtos/income-dto';
 export * from './lib/services/funixproductions-api/accounting/dtos/product-dto';
+export * from './lib/services/funixproductions-api/billing/dtos/funixprod-billing-dto';
+export * from './lib/services/funixproductions-api/billing/services/funixprod-billing-service';
 export * from './lib/services/funixproductions-api/user/services/user-jwt-checker-service';
 export * from './lib/services/funixproductions-api/user/dtos/user-session-jwt';
 export * from './lib/services/funixproductions-api/user/services/user-auth-service';

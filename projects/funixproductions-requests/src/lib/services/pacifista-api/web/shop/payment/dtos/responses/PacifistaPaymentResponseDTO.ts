@@ -1,14 +1,9 @@
 import {ApiDTO} from "../../../../../../core/dtos/api-dto";
+import {PaymentType} from "../../../../../../funixproductions-api/billing/dtos/funixprod-billing-dto";
 
 export class PacifistaPaymentResponseDTO extends ApiDTO {
     paymentExternalOrderId?: string;
     paymentType?: PaymentType;
     orderPaid?: boolean;
     urlClientRedirection?: string;
-}
-
-export enum PaymentType {
-    PAYPAL = 'PAYPAL',
-    CREDIT_CARD = 'CREDIT_CARD',
-    PAYSAFE_CARD = 'PAYSAFE_CARD',
 }

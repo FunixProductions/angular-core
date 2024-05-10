@@ -42,6 +42,7 @@ export * from './lib/services/funixproductions-api/user/dtos/requests/user-login
 export * from './lib/services/funixproductions-api/user/dtos/requests/user-password-reset-dto';
 export * from './lib/services/funixproductions-api/user/dtos/requests/user-secrets-dto';
 export * from './lib/services/funixproductions-api/user/dtos/requests/user-password-reset-request-dto';
+export * from './lib/services/funixproductions-api/user/dtos/requests/user-update-account-dto';
 export * from './lib/services/funixproductions-api/user/dtos/user-dto';
 export * from './lib/services/funixproductions-api/user/dtos/user-token-dto';
 export * from './lib/services/funixproductions-api/twitch/services/twitch-auth-service';

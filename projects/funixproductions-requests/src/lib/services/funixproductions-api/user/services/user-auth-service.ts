@@ -10,6 +10,7 @@ import {Paginated} from "../../../core/dtos/paginated";
 import {environmentDev} from "../../../../../environments/environment-dev";
 import {UserPasswordResetRequestDTO} from "../dtos/requests/user-password-reset-request-dto";
 import {UserPasswordResetDTO} from "../dtos/requests/user-password-reset-dto";
+import {UserUpdateAccountDto} from "../dtos/requests/user-update-account-dto";
 
 export class UserAuthService extends FunixprodHttpClient {
 
@@ -102,6 +103,15 @@ export class UserAuthService extends FunixprodHttpClient {
 
   requestValidationCode(): Observable<void> {
     return this.httpClient.post<void>(this.url + 'valid-account', null, {headers: super.getHeaders()})
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => this.buildErrorDto(error));
+        })
+      );
+  }
+
+  updateAccount(request: UserUpdateAccountDto): Observable<UserDTO> {
+    return this.httpClient.patch<UserDTO>(this.url, request, {headers: super.getHeaders()})
       .pipe(
         catchError((error: HttpErrorResponse) => {
           return throwError(() => this.buildErrorDto(error));

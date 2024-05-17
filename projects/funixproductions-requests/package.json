@@ -1,6 +1,6 @@
 {
   "name": "@funixproductions/funixproductions-requests",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Package used in all FunixProductions Angular projects",
   "peerDependencies": {
     "@angular/common": "^17.1.0",

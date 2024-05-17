@@ -1,8 +1,9 @@
 import {CrudHttpClient} from "../../../core/components/requests/crud-http-client";
 import {FunixprodBillingDto} from "../dtos/funixprod-billing-dto";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import {environmentDev} from "../../../../../environments/environment-dev";
+import {FunixprodHttpClient} from "../../../core/components/requests/funixprod-http-client";
 
 export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto> {
 
@@ -16,7 +17,7 @@ export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto>
 
     downloadInvoice(invoiceId: string) {
         this.http.get<Blob>(this.domain + this.path + '/' + invoiceId + '/invoice', {
-            headers: super.getHeaders()
+            headers: this.getHeadersAuth()
         }).subscribe({
             next: (data: Blob) => {
                 const blob = new Blob([data], { type: 'application/pdf' });
@@ -27,6 +28,17 @@ export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto>
                 link.click();
             }
         });
+    }
+
+    private getHeadersAuth(): HttpHeaders {
+        let headers = new HttpHeaders();
+
+        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+        if (bearerToken !== null) {
+            headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        }
+
+        return headers;
     }
 
 }

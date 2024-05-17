@@ -15,7 +15,9 @@ export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto>
     }
 
     downloadInvoice(invoiceId: string) {
-        this.http.get<Blob>(this.domain + this.path + '/' + invoiceId + '/invoice', {headers: super.getHeaders()}).subscribe({
+        this.http.get<Blob>(this.domain + this.path + '/' + invoiceId + '/invoice', {
+            headers: super.getHeaders()
+        }).subscribe({
             next: (data: Blob) => {
                 const blob = new Blob([data], { type: 'application/pdf' });
                 const url = window.URL.createObjectURL(blob);

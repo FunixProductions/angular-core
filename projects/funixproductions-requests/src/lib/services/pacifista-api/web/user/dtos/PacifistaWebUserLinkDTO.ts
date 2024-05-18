@@ -6,5 +6,6 @@ export class PacifistaWebUserLinkDTO extends ApiDTO {
     minecraftUuid?: string;
     linked?: boolean;
     linkKey?: string;
+    minecraftUsername?: string;
 
 }

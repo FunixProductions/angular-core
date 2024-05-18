@@ -10,12 +10,15 @@ export class PacifistaWebUserLinkService extends CrudHttpClient<PacifistaWebUser
     publicUrl: string;
 
     constructor(protected httpClient: HttpClient, production: boolean) {
+        const domain = production ? environment.pacifistaApiUrl : environmentDev.pacifistaApiUrl;
+        const path = "web/user/link";
+
         super(
             httpClient,
-            production ? environment.pacifistaApiUrl : environmentDev.pacifistaApiUrl,
-            "web/user/link"
+            domain,
+            path
         );
-        this.publicUrl = super.domain + super.path + '/public';
+        this.publicUrl = domain + path + '/public';
     }
 
     linkUser(minecraftUsername: string): Observable<PacifistaWebUserLinkDTO> {

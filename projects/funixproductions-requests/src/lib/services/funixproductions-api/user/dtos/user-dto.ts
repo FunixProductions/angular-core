@@ -35,10 +35,10 @@ export class UserCountry {
   countryCode2Chars: string;
   countryCode3Chars: string;
 
-  constructor(name: string,
-              code: number,
-              countryCode2Chars: string,
-              countryCode3Chars: string) {
+  constructor(name: string = 'France',
+              code: number = 250,
+              countryCode2Chars: string = 'FR',
+              countryCode3Chars: string = 'FRA') {
     this.name = name;
     this.code = code;
     this.countryCode2Chars = countryCode2Chars;

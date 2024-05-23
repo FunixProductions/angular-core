@@ -1,7 +1,10 @@
-import {UserDTO} from "../user-dto";
+import {UserCountry} from "../user-dto";
 
-export class UserUpdateAccountDto extends UserDTO {
+export class UserUpdateAccountDto {
     oldPassword?: string;
     newPassword?: string;
     newPasswordConfirmation?: string;
+    username?: string;
+    email?: string;
+    country?: UserCountry;
 }

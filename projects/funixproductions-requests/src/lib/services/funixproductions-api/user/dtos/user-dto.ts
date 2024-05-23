@@ -9,16 +9,16 @@ export enum UserRole {
 }
 
 export class UserDTO extends ApiDTO {
-  username: string = '';
-  email: string = '';
+  username?: string;
+  email?: string;
   role?: UserRole
-  valid: boolean = true;
-  country: UserCountry = new UserCountry();
+  valid?: boolean;
+  country?: UserCountry;
 }
 
 export class UserCountry {
-  name: string = 'France';
-  code: number = 250;
-  countryCode2Chars: string = 'FR';
-  countryCode3Chars: string = 'FRA';
+  name?: string;
+  code?: number;
+  countryCode2Chars?: string;
+  countryCode3Chars?: string;
 }

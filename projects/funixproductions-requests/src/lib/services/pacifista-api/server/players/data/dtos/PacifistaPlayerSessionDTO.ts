@@ -1,6 +1,6 @@
-import {ApiDTO} from "../../../../../core/dtos/api-dto";
+import {MinecraftPlayerDataDTO} from "../../../../core/dtos/MinecraftPlayerDataDTO";
 
-export class PacifistaPlayerSessionDTO extends ApiDTO {
+export class PacifistaPlayerSessionDTO extends MinecraftPlayerDataDTO {
   connectedAt?: Date
   disconnectedAt?: Date
 }

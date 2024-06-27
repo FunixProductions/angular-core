@@ -56,6 +56,7 @@ export * from './lib/services/funixproductions-api/twitch/enums/TwitchTokenType'
 /**
  * Pacifista API
  */
+export * from './lib/services/pacifista-api/core/dtos/MinecraftPlayerDataDTO';
 export * from './lib/services/pacifista-api/core/enums/PacifistaServerType';
 
 export * from './lib/services/pacifista-api/support/tickets/dtos/PacifistaSupportTicketDTO';

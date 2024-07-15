@@ -84,3 +84,8 @@ export * from './lib/services/pacifista-api/server/players/data/service/Pacifist
 
 export * from './lib/services/pacifista-api/web/user/dtos/PacifistaWebUserLinkDTO';
 export * from './lib/services/pacifista-api/web/user/services/PacifistaWebUserLinkService';
+
+export * from './lib/services/pacifista-api/web/vote/dtos/VoteDTO';
+export * from './lib/services/pacifista-api/web/vote/dtos/VoteWebsiteDTO';
+export * from './lib/services/pacifista-api/web/vote/dtos/VotesCountDTO';
+export * from './lib/services/pacifista-api/web/vote/services/VoteService';

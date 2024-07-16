@@ -1,5 +1,5 @@
 import {FunixprodHttpClient} from "../../../../core/components/requests/funixprod-http-client";
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";
 import {environmentDev} from "../../../../../../environments/environment-dev";
 import {catchError, Observable, throwError} from "rxjs";
@@ -27,7 +27,7 @@ export class VoteService extends FunixprodHttpClient {
 
     public getAll(page: number, username?: string, month?: number, year?: number): Observable<Paginated<VoteDTO>> {
         return this.http.get<Paginated<VoteDTO>>(this.domain + this.path, {
-            headers: super.getHeaders(),
+            headers: this.getHeaders(),
             params: {
                 page: page.toString(),
                 username: username ?? "",
@@ -42,8 +42,8 @@ export class VoteService extends FunixprodHttpClient {
     }
 
     public getTopVoters(month: number, year: number): Observable<VotesCountDTO[]> {
-        return this.http.get<VotesCountDTO[]>(this.domain + this.path + "/check", {
-            headers: super.getHeaders(),
+        return this.http.get<VotesCountDTO[]>(this.domain + this.path + "/top", {
+            headers: this.getHeaders(),
             params: {
                 month: month.toString(),
                 year: year.toString()
@@ -57,7 +57,7 @@ export class VoteService extends FunixprodHttpClient {
 
     public getVoteWebsites(): Observable<VoteWebsiteDTO[]> {
         return this.http.get<VoteWebsiteDTO[]>(this.domain + this.path + "/websites", {
-            headers: super.getHeaders()
+            headers: this.getHeaders()
         }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -67,7 +67,7 @@ export class VoteService extends FunixprodHttpClient {
 
     public checkVote(voteWebsite: string): Observable<VoteDTO> {
         return this.http.get<VoteDTO>(this.domain + this.path + "/user/" + voteWebsite, {
-            headers: super.getHeaders()
+            headers: this.getHeaders()
         }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -77,7 +77,7 @@ export class VoteService extends FunixprodHttpClient {
 
     public makeVote(voteWebsite: string, username: string): Observable<VoteDTO> {
         return this.http.post<VoteDTO>(this.domain + this.path + "/user/" + voteWebsite, {}, {
-            headers: super.getHeaders(),
+            headers: this.getHeaders(),
             params: {
                 username: username
             }
@@ -88,4 +88,9 @@ export class VoteService extends FunixprodHttpClient {
         );
     }
 
+    protected override getHeaders(captchaCode: string = ''): HttpHeaders {
+        return  new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+    }
 }

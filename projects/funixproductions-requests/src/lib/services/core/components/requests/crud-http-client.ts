@@ -5,7 +5,7 @@ import {QueryBuilder} from "../query.builder";
 import {FunixprodHttpClient} from "./funixprod-http-client";
 import {ApiDTO} from "../../dtos/api-dto";
 
-interface RequestParams {
+export interface RequestParams {
   elemsPerPage?: number;
   page?: number;
   sort?: string;

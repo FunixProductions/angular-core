@@ -6,10 +6,23 @@ export class QueryParam  {
 export class QueryBuilder {
 
   static like: string = ':like:'
+  static likeIgnoreCase: string = ':likeic:'
+  static notLike: string = ':nlike:'
+  static startWith: string = ':sw:'
+  static startWithIgnoreCase: string = ':swic:'
+  static endWith: string = ':ew:'
+  static endWithIgnoreCase: string = ':ewic:'
   static equal: string = ':eq:'
+  static equalIgnoreCase: string = ':eqic:'
   static notEqual: string = ':neq:'
   static greater: string = ':gt:'
+  static greaterOrEquals: string = ':gte:'
   static lower: string = ':lt:'
+  static lowerOrEquals: string = ':lte:'
+  static isTrue: string = ':istrue:'
+  static isFalse: string = ':isfalse:'
+  static isNull: string = ':isnull:'
+  static isNotNull: string = ':isnotnull:'
 
   queryArray: QueryParam[] = [];
 

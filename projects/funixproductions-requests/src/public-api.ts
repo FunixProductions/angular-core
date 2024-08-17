@@ -92,3 +92,7 @@ export * from './lib/services/pacifista-api/web/vote/services/VoteService';
 
 export * from './lib/services/pacifista-api/server/essentials/status/dtos/PacifistaServerInfoDTO';
 export * from './lib/services/pacifista-api/server/essentials/status/services/PacifistaServerInfoService';
+
+export * from './lib/services/pacifista-api/server/sanctions/dtos/PacifistaSanctionDTO';
+export * from './lib/services/pacifista-api/server/sanctions/enums/PacifistaSanctionType';
+export * from './lib/services/pacifista-api/server/sanctions/service/PacifistaSanctionService';

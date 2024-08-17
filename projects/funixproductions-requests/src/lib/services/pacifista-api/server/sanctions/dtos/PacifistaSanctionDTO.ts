@@ -15,6 +15,7 @@ export class PacifistaSanctionDTO extends ApiDTO {
                 active: boolean = true,
                 playerActionUuid?: string,
                 expirationDate?: Date) {
+        super()
         this.playerSanctionUuid = playerSanctionUuid
         this.reason = reason
         this.sanctionType = sanctionType

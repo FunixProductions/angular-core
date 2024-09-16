@@ -4,6 +4,9 @@ on:
   release:
     types: [created]
 
+  workflow_dispatch:
+
+
 jobs:
   publish-npm-global-registry:
     runs-on: ubuntu-latest

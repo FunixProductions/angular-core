@@ -24,7 +24,7 @@ export class PacifistaNewsService extends FunixprodHttpClient {
                 params: {
                     page: page,
                 },
-                headers: this.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -35,7 +35,7 @@ export class PacifistaNewsService extends FunixprodHttpClient {
     public getNewsById(id: string, authed: boolean = false): Observable<PacifistaNewsDTO> {
         return this.http.get<PacifistaNewsDTO>(this.domain + this.path + '/' + id,
             {
-                headers: this.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -97,7 +97,7 @@ export class PacifistaNewsService extends FunixprodHttpClient {
                 params: {
                     page: page,
                 },
-                headers: this.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -123,7 +123,7 @@ export class PacifistaNewsService extends FunixprodHttpClient {
             );
     }
 
-    private getHeadersForGetRequest(authed: boolean = false): HttpHeaders {
+    static getHeadersForGetRequest(authed: boolean = false): HttpHeaders {
         let bearerToken: string | null = authed ? localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName) : null;
         let headersToSend = new HttpHeaders({
             'Content-Type': 'application/json'

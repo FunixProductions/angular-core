@@ -10,7 +10,7 @@ export class PacifistaNewsDTO extends ApiDTO {
   /**
    * Nom d'utilisateur Minecraft de la personne qui l'a modifié
    */
-  updateWriter: string
+  updateWriter?: string
 
   /**
    * Nom de l'article présent dans l'url
@@ -77,7 +77,6 @@ export class PacifistaNewsDTO extends ApiDTO {
     this.draft = draft;
 
     this.originalWriter = '';
-    this.updateWriter = '';
     this.articleImageId = '';
     this.articleImageIdLowRes = '';
     this.likes = 0;

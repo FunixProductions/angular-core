@@ -75,6 +75,7 @@ export * from './lib/services/pacifista-api/web/news/dtos/ban/PacifistaNewsBanDT
 export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsService';
 export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsBanClient';
 export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsCommentClient';
+
 export * from './lib/services/pacifista-api/web/shop/articles/dtos/PacifistaShopArticleDTO';
 export * from './lib/services/pacifista-api/web/shop/articles/services/PacifistaShopArticleService';
 export * from './lib/services/pacifista-api/web/shop/categories/services/PacifistaShopCategoryService';

@@ -2,7 +2,7 @@ import {CrudHttpClient, RequestParams} from "../../../../core/components/request
 import {environment} from "../../../../../../environments/environment";
 import {environmentDev} from "../../../../../../environments/environment-dev";
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {PacifistaNewsDTO} from "../dtos/PacifistaNewsDTO";
+import {PacifistaNewsDTO} from "../dtos/news/PacifistaNewsDTO";
 import {PageOption, Paginated} from "../../../../core/dtos/paginated";
 import {QueryBuilder} from "../../../../core/components/query.builder";
 import {catchError, Observable, throwError} from "rxjs";

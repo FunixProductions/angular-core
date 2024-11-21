@@ -73,8 +73,8 @@ export * from './lib/services/pacifista-api/web/news/dtos/comments/PacifistaNews
 export * from './lib/services/pacifista-api/web/news/dtos/comments/PacifistaNewsCommentDTO'
 export * from './lib/services/pacifista-api/web/news/dtos/ban/PacifistaNewsBanDTO'
 export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsService';
-export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsBanClient';
-export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsCommentClient';
+export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsBanService';
+export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsCommentService';
 
 export * from './lib/services/pacifista-api/web/shop/articles/dtos/PacifistaShopArticleDTO';
 export * from './lib/services/pacifista-api/web/shop/articles/services/PacifistaShopArticleService';

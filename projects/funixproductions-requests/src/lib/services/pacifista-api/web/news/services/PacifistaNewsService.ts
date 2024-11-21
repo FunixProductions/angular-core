@@ -43,6 +43,17 @@ export class PacifistaNewsService extends FunixprodHttpClient {
         );
     }
 
+    public getNewsByName(name: string, authed: boolean = false): Observable<PacifistaNewsDTO> {
+        return this.http.get<PacifistaNewsDTO>(this.domain + this.path + '/named/' + name,
+            {
+                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
+            }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => this.buildErrorDto(error));
+            })
+        );
+    }
+
     public createNews(request: PacifistaNewsDTO, file: File): Observable<PacifistaNewsDTO> {
         let formData = new FormData();
         formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));

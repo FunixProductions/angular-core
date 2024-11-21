@@ -8,7 +8,7 @@ import {PacifistaNewsCommentDTO} from "../dtos/comments/PacifistaNewsCommentDTO"
 import {Paginated} from "../../../../core/dtos/paginated";
 import {PacifistaNewsCommentLikeDTO} from "../dtos/comments/PacifistaNewsCommentLikeDTO";
 
-export class PacifistaNewsCommentClient extends FunixprodHttpClient {
+export class PacifistaNewsCommentService extends FunixprodHttpClient {
 
     private readonly domain: string;
     private readonly path: string;

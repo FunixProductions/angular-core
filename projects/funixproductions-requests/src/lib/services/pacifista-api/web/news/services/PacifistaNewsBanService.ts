@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";
 import {environmentDev} from "../../../../../../environments/environment-dev";
 
-export class PacifistaNewsBanClient extends CrudHttpClient<PacifistaNewsBanDTO> {
+export class PacifistaNewsBanService extends CrudHttpClient<PacifistaNewsBanDTO> {
 
     constructor(http: HttpClient, production: boolean) {
         super(

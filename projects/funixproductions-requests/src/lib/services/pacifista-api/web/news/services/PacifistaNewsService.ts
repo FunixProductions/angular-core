@@ -1,40 +1,149 @@
-import {CrudHttpClient, RequestParams} from "../../../../core/components/requests/crud-http-client";
 import {environment} from "../../../../../../environments/environment";
 import {environmentDev} from "../../../../../../environments/environment-dev";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {PacifistaNewsDTO} from "../dtos/news/PacifistaNewsDTO";
-import {PageOption, Paginated} from "../../../../core/dtos/paginated";
-import {QueryBuilder} from "../../../../core/components/query.builder";
+import {Paginated} from "../../../../core/dtos/paginated";
 import {catchError, Observable, throwError} from "rxjs";
+import {FunixprodHttpClient} from "../../../../core/components/requests/funixprod-http-client";
+import {PacifistaNewsLikeDTO} from "../dtos/news/PacifistaNewsLikeDTO";
 
-export class PacifistaNewsService extends CrudHttpClient<PacifistaNewsDTO> {
+export class PacifistaNewsService extends FunixprodHttpClient {
 
-  constructor(protected httpClient: HttpClient, production: boolean) {
-    super(
-        httpClient,
-        production ? environment.pacifistaApiUrl : environmentDev.pacifistaApiUrl,
-        'web/news'
-    );
-  }
+    private readonly domain: string;
+    private readonly path: string;
 
-  override find(options: PageOption, queryBuilder: QueryBuilder): Observable<Paginated<PacifistaNewsDTO>> {
-    const params: RequestParams = {
-      page: options.page,
-      elemsPerPage: options.elemsPerPage || 10,
-      sort: options.sort!,
-      search: (queryBuilder === null ? '' : queryBuilder.get())
-    };
+    constructor(protected http: HttpClient, production: boolean) {
+        super();
+        this.domain = production ? environment.pacifistaApiUrl : environmentDev.pacifistaApiUrl;
+        this.path = 'web/news';
+    }
 
-    return this.http.get<Paginated<PacifistaNewsDTO>>(this.domain + this.path,
-        {
-          params: {...params},
-          headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-          })
-        }).pipe(
+    public getAllNews(page: number, authed: boolean = false): Observable<Paginated<PacifistaNewsDTO>> {
+        return this.http.get<Paginated<PacifistaNewsDTO>>(this.domain + this.path,
+            {
+                params: {
+                    page: page,
+                },
+                headers: this.getHeadersForGetRequest(authed)
+            }).pipe(
             catchError((error: HttpErrorResponse) => {
-              return throwError(() => this.buildErrorDto(error));
+                return throwError(() => this.buildErrorDto(error));
             })
         );
-  }
+    }
+
+    public getNewsById(id: string, authed: boolean = false): Observable<PacifistaNewsDTO> {
+        return this.http.get<PacifistaNewsDTO>(this.domain + this.path + '/' + id,
+            {
+                headers: this.getHeadersForGetRequest(authed)
+            }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => this.buildErrorDto(error));
+            })
+        );
+    }
+
+    public createNews(request: PacifistaNewsDTO, file: File): Observable<PacifistaNewsDTO> {
+        let formData = new FormData();
+        formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
+        formData.append('image', file);
+
+        return this.http.post<PacifistaNewsDTO>(this.domain + this.path, formData, {headers: this.getHeadersForMultiPartRequest()})
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    return throwError(() => this.buildErrorDto(error));
+                })
+            );
+    }
+
+    public updateNews(request: PacifistaNewsDTO, file?: File): Observable<PacifistaNewsDTO> {
+        if (!file) {
+            return this.http.put<PacifistaNewsDTO>(this.domain + this.path, request, {headers: this.getHeaders()})
+                .pipe(
+                    catchError((error: HttpErrorResponse) => {
+                        return throwError(() => this.buildErrorDto(error));
+                    })
+                );
+        } else {
+            let formData = new FormData();
+            formData.append('dto', new Blob([JSON.stringify(request)], {type: 'application/json'}));
+            formData.append('image', file);
+
+            return this.http.post<PacifistaNewsDTO>(this.domain + this.path + '/file', formData, {headers: this.getHeadersForMultiPartRequest()})
+                .pipe(
+                    catchError((error: HttpErrorResponse) => {
+                        return throwError(() => this.buildErrorDto(error));
+                    })
+                );
+        }
+    }
+
+    public deleteNews(id: string): Observable<any> {
+        const httpParams: HttpParams = new HttpParams().set('id', id);
+
+        return this.http.delete(this.domain + this.path, {
+            params: httpParams,
+            headers: this.getHeaders()
+        }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => this.buildErrorDto(error));
+            })
+        )
+    }
+
+    public getLikesOnNews(newsId: string, page: number, authed: boolean = false): Observable<Paginated<PacifistaNewsLikeDTO>> {
+        return this.http.get<Paginated<PacifistaNewsLikeDTO>>(this.domain + this.path + '/likes/' + newsId,
+            {
+                params: {
+                    page: page,
+                },
+                headers: this.getHeadersForGetRequest(authed)
+            }).pipe(
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => this.buildErrorDto(error));
+            })
+        );
+    }
+
+    public likeNews(newsId: string): Observable<PacifistaNewsLikeDTO> {
+        return this.http.post<PacifistaNewsLikeDTO>(this.domain + this.path + '/like/' + newsId, null, {headers: this.getHeaders()})
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    return throwError(() => this.buildErrorDto(error));
+                })
+            );
+    }
+
+    public removeLikeFromNews(newsId: string): Observable<any> {
+        return this.http.delete(this.domain + this.path + '/like/' + newsId, {headers: this.getHeaders()})
+            .pipe(
+                catchError((error: HttpErrorResponse) => {
+                    return throwError(() => this.buildErrorDto(error));
+                })
+            );
+    }
+
+    private getHeadersForGetRequest(authed: boolean = false): HttpHeaders {
+        let bearerToken: string | null = authed ? localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName) : null;
+        let headersToSend = new HttpHeaders({
+            'Content-Type': 'application/json'
+        });
+
+        if (bearerToken !== null) {
+            headersToSend = headersToSend.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        }
+
+        return headersToSend;
+    }
+
+    private getHeadersForMultiPartRequest(): HttpHeaders {
+        let headersToSend = new HttpHeaders();
+        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+
+        if (bearerToken !== null) {
+            headersToSend = headersToSend.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        }
+
+        return headersToSend
+    }
 }

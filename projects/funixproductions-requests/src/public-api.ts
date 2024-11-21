@@ -65,8 +65,17 @@ export * from './lib/services/pacifista-api/support/tickets/service/PacifistaSup
 export * from './lib/services/pacifista-api/support/tickets/service/PacifistaSupportTicketMessageService';
 export * from './lib/services/pacifista-api/support/tickets/service/PacifistaSupportTicketMessageWebsocketService';
 
-export * from './lib/services/pacifista-api/web/news/dtos/PacifistaNewsDTO';
+export * from './lib/services/pacifista-api/web/news/dtos/PacifistaNewsUserDataDTO'
+export * from './lib/services/pacifista-api/web/news/dtos/news/PacifistaNewsDTO';
+export * from './lib/services/pacifista-api/web/news/dtos/news/PacifistaNewsLikeDTO'
+export * from './lib/services/pacifista-api/web/news/dtos/news/PacifistaNewsImageDTO'
+export * from './lib/services/pacifista-api/web/news/dtos/comments/PacifistaNewsCommentLikeDTO'
+export * from './lib/services/pacifista-api/web/news/dtos/comments/PacifistaNewsCommentDTO'
+export * from './lib/services/pacifista-api/web/news/dtos/ban/PacifistaNewsBanDTO'
 export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsService';
+export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsBanClient';
+export * from './lib/services/pacifista-api/web/news/services/PacifistaNewsCommentClient';
+
 export * from './lib/services/pacifista-api/web/shop/articles/dtos/PacifistaShopArticleDTO';
 export * from './lib/services/pacifista-api/web/shop/articles/services/PacifistaShopArticleService';
 export * from './lib/services/pacifista-api/web/shop/categories/services/PacifistaShopCategoryService';

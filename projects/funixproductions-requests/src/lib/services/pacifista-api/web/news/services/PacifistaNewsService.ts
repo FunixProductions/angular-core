@@ -141,7 +141,7 @@ export class PacifistaNewsService extends FunixprodHttpClient {
         });
 
         if (bearerToken !== null) {
-            headersToSend = headersToSend.set(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+            headersToSend = headersToSend.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
         }
 
         return headersToSend;

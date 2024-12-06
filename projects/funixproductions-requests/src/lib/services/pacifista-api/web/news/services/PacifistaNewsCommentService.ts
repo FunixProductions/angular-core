@@ -19,14 +19,14 @@ export class PacifistaNewsCommentService extends FunixprodHttpClient {
         this.path = 'web/news/comments';
     }
 
-    public getCommentsByNewsId(newsId: string, page: number, authed: boolean = false): Observable<Paginated<PacifistaNewsCommentDTO>> {
+    public getCommentsByNewsId(newsId: string, page: number): Observable<Paginated<PacifistaNewsCommentDTO>> {
         return this.http.get<Paginated<PacifistaNewsCommentDTO>>(this.domain + this.path,
             {
                 params: {
                     page: page,
                     newsId: newsId
                 },
-                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest()
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -34,14 +34,14 @@ export class PacifistaNewsCommentService extends FunixprodHttpClient {
         );
     }
 
-    public getRepliesByCommentId(commentId: string, page: number, authed: boolean = false): Observable<Paginated<PacifistaNewsCommentDTO>> {
+    public getRepliesByCommentId(commentId: string, page: number): Observable<Paginated<PacifistaNewsCommentDTO>> {
         return this.http.get<Paginated<PacifistaNewsCommentDTO>>(this.domain + this.path + '/replies',
             {
                 params: {
                     page: page,
                     commentId: commentId
                 },
-                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest()
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -49,14 +49,14 @@ export class PacifistaNewsCommentService extends FunixprodHttpClient {
         );
     }
 
-    public getCommentsByUser(minecraftUsername: string, page: number, authed: boolean = false): Observable<Paginated<PacifistaNewsCommentDTO>> {
+    public getCommentsByUser(minecraftUsername: string, page: number): Observable<Paginated<PacifistaNewsCommentDTO>> {
         return this.http.get<Paginated<PacifistaNewsCommentDTO>>(this.domain + this.path + '/user',
             {
                 params: {
                     page: page,
                     minecraftUsername: minecraftUsername
                 },
-                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest()
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));
@@ -91,14 +91,14 @@ export class PacifistaNewsCommentService extends FunixprodHttpClient {
             );
     }
 
-    public getLikesOnComment(commentId: string, page: number, authed: boolean = false): Observable<Paginated<PacifistaNewsCommentLikeDTO>> {
+    public getLikesOnComment(commentId: string, page: number): Observable<Paginated<PacifistaNewsCommentLikeDTO>> {
         return this.http.get<Paginated<PacifistaNewsCommentLikeDTO>>(this.domain + this.path + '/likes',
             {
                 params: {
                     page: page,
                     commentId: commentId
                 },
-                headers: PacifistaNewsService.getHeadersForGetRequest(authed)
+                headers: PacifistaNewsService.getHeadersForGetRequest()
             }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));

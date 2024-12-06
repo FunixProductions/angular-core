@@ -18,12 +18,24 @@ export class PacifistaNewsCommentDTO extends PacifistaNewsUserDataDTO {
      */
     likes: number
 
+    /**
+     * Nombre de réponses à ce commentaire
+     */
+    replies: number
+
+    /**
+     * Si l'utilisateur a liké ce commentaire (si authentifié)
+     */
+    liked: boolean
+
     constructor(news: PacifistaNewsDTO, content: string, parent?: PacifistaNewsCommentDTO) {
         super(news);
         this.content = content;
         this.parent = parent;
 
         this.likes = 0;
+        this.replies = 0;
+        this.liked = false;
     }
 
 }

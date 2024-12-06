@@ -67,6 +67,11 @@ export class PacifistaNewsDTO extends ApiDTO {
    */
   views: number
 
+  /**
+   * Si l'utilisateur a liké l'article (si un utilisateur est authentifié)
+   */
+  liked: boolean
+
   constructor(name: string, title: string, subtitle: string, bodyHtml: string, bodyMarkdown: string, draft: boolean) {
     super();
     this.name = name;
@@ -82,6 +87,7 @@ export class PacifistaNewsDTO extends ApiDTO {
     this.likes = 0;
     this.comments = 0;
     this.views = 0;
+    this.liked = false;
   }
 
 }

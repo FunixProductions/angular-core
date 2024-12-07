@@ -75,9 +75,9 @@ export class VoteService extends FunixprodHttpClient {
         );
     }
 
-    public makeVote(voteWebsite: string): Observable<VoteDTO> {
+    public makeVote(voteWebsite: string, googleRecaptchaCode: string): Observable<VoteDTO> {
         return this.http.post<VoteDTO>(this.domain + this.path + "/user/" + voteWebsite, {}, {
-            headers: super.getHeaders(),
+            headers: super.getHeaders(googleRecaptchaCode),
         }).pipe(
             catchError((error: HttpErrorResponse) => {
                 return throwError(() => this.buildErrorDto(error));

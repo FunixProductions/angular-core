@@ -64,8 +64,8 @@ export class PacifistaNewsCommentService extends FunixprodHttpClient {
         );
     }
 
-    public createComment(request: PacifistaNewsCommentDTO): Observable<PacifistaNewsCommentDTO> {
-        return this.http.post<PacifistaNewsCommentDTO>(this.domain + this.path, request, {headers: this.getHeaders()})
+    public createComment(request: PacifistaNewsCommentDTO, googleCaptchaCode: string): Observable<PacifistaNewsCommentDTO> {
+        return this.http.post<PacifistaNewsCommentDTO>(this.domain + this.path, request, {headers: this.getHeaders(googleCaptchaCode)})
             .pipe(
                 catchError((error: HttpErrorResponse) => {
                     return throwError(() => this.buildErrorDto(error));

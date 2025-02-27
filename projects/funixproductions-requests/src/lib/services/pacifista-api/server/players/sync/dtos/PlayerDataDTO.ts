@@ -1,6 +1,6 @@
 import {ApiDTO} from 'projects/funixproductions-requests/src/public-api';
 
-export class PacifistaPlayerDataDTO extends ApiDTO {
+export class PlayerDataDTO extends ApiDTO {
     public minecraftUuid: string;
 
     constructor(minecraftUuid: string) {

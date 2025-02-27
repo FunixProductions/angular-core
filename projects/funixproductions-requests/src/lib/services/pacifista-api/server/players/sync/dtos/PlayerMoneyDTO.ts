@@ -1,6 +1,6 @@
-import {PacifistaPlayerDataDTO} from './PacifistaPlayerDataDTO';
+import {PlayerDataDTO} from './PlayerDataDTO';
 
-export class PacifistaPlayerMoneyDTO extends PacifistaPlayerDataDTO {
+export class PlayerMoneyDTO extends PlayerDataDTO {
     money: number;
     offlineMoney: number;
 

@@ -51,9 +51,12 @@ export class StorageHttpClient<DTO extends ApiDTO> extends CrudHttpClient<DTO> {
 
     private getHeadersAuth(): HttpHeaders {
         let headers = new HttpHeaders();
-        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
-        if (bearerToken !== null) {
-            headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+
+        if (typeof localStorage !== 'undefined') {
+            const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+            if (bearerToken !== null) {
+                headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+            }
         }
 
         return headers;

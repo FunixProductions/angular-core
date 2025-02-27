@@ -135,13 +135,15 @@ export class PacifistaNewsService extends FunixprodHttpClient {
     }
 
     static getHeadersForGetRequest(): HttpHeaders {
-        let bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
         let headersToSend = new HttpHeaders({
             'Content-Type': 'application/json'
         });
 
-        if (bearerToken !== null) {
-            headersToSend = headersToSend.set(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        if (typeof localStorage !== 'undefined') {
+            let bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+            if (bearerToken !== null) {
+                headersToSend = headersToSend.set(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+            }
         }
 
         return headersToSend;
@@ -149,10 +151,12 @@ export class PacifistaNewsService extends FunixprodHttpClient {
 
     private getHeadersForMultiPartRequest(): HttpHeaders {
         let headersToSend = new HttpHeaders();
-        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
 
-        if (bearerToken !== null) {
-            headersToSend = headersToSend.set(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        if (typeof localStorage !== 'undefined') {
+            const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+            if (bearerToken !== null) {
+                headersToSend = headersToSend.set(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+            }
         }
 
         return headersToSend

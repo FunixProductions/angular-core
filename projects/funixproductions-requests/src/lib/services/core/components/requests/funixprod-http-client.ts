@@ -4,7 +4,11 @@ import {ErrorDto} from "../../dtos/error-dto";
 export abstract class FunixprodHttpClient {
 
   protected getBearer(): string | null {
-    return localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+    } else {
+      return null;
+    }
   }
 
   public static readonly accessTokenLocalStorageName: string = 'user-token-requests'
@@ -21,9 +25,11 @@ export abstract class FunixprodHttpClient {
       headersToSend = headersToSend.set(FunixprodHttpClient.captchaHeaderCode, captchaCode);
     }
 
-    const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
-    if (bearerToken !== null) {
-      headersToSend = headersToSend.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+    if (typeof localStorage !== 'undefined') {
+      const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+      if (bearerToken !== null) {
+        headersToSend = headersToSend.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+      }
     }
 
     return headersToSend;
@@ -31,10 +37,10 @@ export abstract class FunixprodHttpClient {
 
   public buildErrorDto(error: HttpErrorResponse): ErrorDto {
     let customError: ErrorDto = new ErrorDto(
-      'Une erreur est survenue : ',
-      error.status,
-      Date.now(),
-      []
+        'Une erreur est survenue : ',
+        error.status,
+        Date.now(),
+        []
     );
 
     if (error.error instanceof ErrorEvent) {

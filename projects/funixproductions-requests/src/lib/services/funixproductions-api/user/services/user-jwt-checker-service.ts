@@ -26,6 +26,10 @@ export class UserJwtCheckerService {
   }
 
   private getTokenFromLocalStorage(): UserSessionJwt | null {
+    if (typeof localStorage === 'undefined') {
+      return null;
+    }
+
     const token: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
 
     if (token) {

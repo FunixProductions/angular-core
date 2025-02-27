@@ -16,6 +16,8 @@ export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto>
     }
 
     downloadInvoice(invoiceId: string) {
+        if (typeof window === 'undefined' || typeof document === 'undefined') return
+
         this.http.get<Blob>(this.domain + this.path + '/' + invoiceId + '/invoice', {
             headers: this.getHeadersAuth(),
             responseType: 'blob' as 'json'
@@ -34,9 +36,11 @@ export class FunixprodBillingService extends CrudHttpClient<FunixprodBillingDto>
     private getHeadersAuth(): HttpHeaders {
         let headers = new HttpHeaders();
 
-        const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
-        if (bearerToken !== null) {
-            headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+        if (typeof localStorage !== 'undefined') {
+            const bearerToken: string | null = localStorage.getItem(FunixprodHttpClient.accessTokenLocalStorageName);
+            if (bearerToken !== null) {
+                headers = headers.append(FunixprodHttpClient.headerAuth, FunixprodHttpClient.bearerPrefix + ' ' + bearerToken);
+            }
         }
 
         return headers;

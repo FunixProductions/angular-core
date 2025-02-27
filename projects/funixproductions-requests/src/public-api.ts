@@ -91,6 +91,10 @@ export * from './lib/services/pacifista-api/server/players/data/service/Pacifist
 export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerSessionsService';
 export * from './lib/services/pacifista-api/server/players/data/service/PacifistaPlayerChatMessagesService';
 
+export * from './lib/services/pacifista-api/server/players/sync/service/PlayerMoneyService';
+export * from './lib/services/pacifista-api/server/players/sync/dtos/PlayerDataDTO';
+export * from './lib/services/pacifista-api/server/players/sync/dtos/PlayerMoneyDTO';
+
 export * from './lib/services/pacifista-api/web/user/dtos/PacifistaWebUserLinkDTO';
 export * from './lib/services/pacifista-api/web/user/services/PacifistaWebUserLinkService';
 

@@ -1,4 +1,4 @@
-import {ApiDTO} from 'projects/funixproductions-requests/src/public-api';
+import {ApiDTO} from '../../../../../core/dtos/api-dto';
 
 export class PlayerDataDTO extends ApiDTO {
     public minecraftUuid: string;

@@ -1,10 +1,10 @@
 import {ApiDTO} from '../../../../../core/dtos/api-dto';
 
 export class PlayerDataDTO extends ApiDTO {
-    public minecraftUuid: string;
+    public playerOwnerUuid: string;
 
-    constructor(minecraftUuid: string) {
+    constructor(playerOwnerUuid: string) {
         super();
-        this.minecraftUuid = minecraftUuid;
+        this.playerOwnerUuid = playerOwnerUuid;
     }
 }

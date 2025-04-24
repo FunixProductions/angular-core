@@ -35,6 +35,8 @@ export * from './lib/services/funixproductions-api/accounting/dtos/income-dto';
 export * from './lib/services/funixproductions-api/accounting/dtos/product-dto';
 export * from './lib/services/funixproductions-api/billing/dtos/funixprod-billing-dto';
 export * from './lib/services/funixproductions-api/billing/services/funixprod-billing-service';
+export * from './lib/services/funixproductions-api/billing/dtos/PaypalPlanDTO';
+export * from './lib/services/funixproductions-api/billing/dtos/PaypalSubscriptionDTO';
 export * from './lib/services/funixproductions-api/user/services/user-jwt-checker-service';
 export * from './lib/services/funixproductions-api/user/dtos/user-session-jwt';
 export * from './lib/services/funixproductions-api/user/services/user-auth-service';
@@ -83,6 +85,7 @@ export * from './lib/services/pacifista-api/web/shop/categories/dtos/PacifistaSh
 export * from './lib/services/pacifista-api/web/shop/payment/dtos/responses/PacifistaPaymentResponseDTO';
 export * from './lib/services/pacifista-api/web/shop/payment/dtos/requests/PacifistaPaymentRequestDTO';
 export * from './lib/services/pacifista-api/web/shop/payment/services/PacifistaPaymentService';
+export * from './lib/services/pacifista-api/web/shop/payment/services/PacifistaPlusPaymentService';
 
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerDataDTO';
 export * from './lib/services/pacifista-api/server/players/data/dtos/PacifistaPlayerChatMessageDTO';
